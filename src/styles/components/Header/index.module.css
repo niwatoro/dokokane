@@ -1,0 +1,19 @@
+.logo {
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.industry-container {
+    background-color: darkgoldenrod;
+    color: white;
+}
+
+.industry-content {
+    flex-wrap: wrap;
+    row-gap: 0;
+    padding: 1rem 0;
+}
+
+.industry-link:hover {
+    text-decoration: underline;
+}
