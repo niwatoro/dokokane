@@ -1,0 +1,6 @@
+.container {
+  padding: 0.1rem 0 0.2rem 1rem;
+  border-left: darkgoldenrod 0.5rem solid;
+  font-size: x-large;
+  font-weight: bold;
+}
