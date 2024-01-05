@@ -24,11 +24,12 @@ export const calculateTakeHomePay = ({
     annualSalary,
     prefecture,
   });
-  const withholdingTax = calculateWithholdingTax({
-    deductedMonthlyIncome:
-      (annualSalary - socialInsurancePremiums.employeeShare) / 12,
-    numberOfDependents,
-  })!;
+  const withholdingTax =
+    calculateWithholdingTax({
+      deductedMonthlyIncome:
+        (annualSalary - socialInsurancePremiums.employeeShare) / 12,
+      numberOfDependents,
+    })! * 12;
   const residentTax = calculateResidentTax({
     annualSalary,
     socialInsurancePremiums: socialInsurancePremiums.employeeShare,
@@ -37,11 +38,16 @@ export const calculateTakeHomePay = ({
     businessType,
     annualSalary,
   });
-  return (
-    annualSalary -
-    socialInsurancePremiums.employeeShare -
-    withholdingTax -
-    residentTax -
-    laborInsurancePremiums.employeeShare
-  );
+  return {
+    takeHomePay:
+      annualSalary -
+      socialInsurancePremiums.employeeShare -
+      withholdingTax -
+      residentTax -
+      laborInsurancePremiums.employeeShare,
+    socialInsurancePremiums: socialInsurancePremiums.employeeShare,
+    laborInsurancePremiums: laborInsurancePremiums.employeeShare,
+    withholdingTax,
+    residentTax,
+  };
 };

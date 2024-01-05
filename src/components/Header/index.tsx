@@ -15,7 +15,7 @@ const kaiseiHarunoUmi = Kaisei_HarunoUmi({ subsets: [], weight: "700" });
 export const Header = () => {
   return (
     <>
-      <Navbar>
+      <Navbar position={"static"}>
         <NavbarBrand>
           <NextLink
             className={`${styles.logo} ${kaiseiHarunoUmi.className}`}
@@ -25,7 +25,11 @@ export const Header = () => {
           </NextLink>
         </NavbarBrand>
       </Navbar>
-      <Navbar className={styles["industry-container"]} height={"auto"}>
+      <Navbar
+        className={styles["industry-container"]}
+        height={"auto"}
+        position={"static"}
+      >
         <NavbarContent className={styles["industry-content"]}>
           {industries.map((industry, i) => (
             <NavbarItem key={i}>

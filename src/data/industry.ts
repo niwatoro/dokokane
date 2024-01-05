@@ -47,4 +47,4 @@ export const industries = [
     name: "公共",
     href: "/public",
   },
-];
+] as const;
