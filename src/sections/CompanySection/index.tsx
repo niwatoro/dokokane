@@ -4,6 +4,7 @@ import { Layout } from "@/sections/components/Layout";
 import styles from "@/styles/sections/CompanySection/index.module.css";
 import { MoneyGraph } from "@/sections/CompanySection/components/MoneyGraph";
 import { Link } from "@nextui-org/link";
+import { BreadcrumbItem, Breadcrumbs, Spacer } from "@nextui-org/react";
 
 type Props = {
   company: Company;
@@ -12,6 +13,11 @@ export const CompanySection: FC<Props> = ({ company }) => {
   return (
     <Layout>
       <div className={styles.container}>
+        <Breadcrumbs>
+          <BreadcrumbItem>会社</BreadcrumbItem>
+          <BreadcrumbItem>{company.name}</BreadcrumbItem>
+        </Breadcrumbs>
+        <Spacer y={4} />
         <div>
           <div className={styles.name}>{company.name}</div>
           <div>

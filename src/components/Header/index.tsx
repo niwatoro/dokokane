@@ -58,7 +58,7 @@ export const Header = () => {
               </NavbarItem>
             ))
           ) : (
-            <Skeleton />
+            <Skeleton className={"h-[1rem]"} />
           )}
         </NavbarContent>
       </Navbar>

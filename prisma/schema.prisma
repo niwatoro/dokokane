@@ -14,18 +14,18 @@ datasource db {
 model Industry {
   id      Int       @id @default(autoincrement())
   name    String
-  company Company[]
+  Company Company[]
 }
 
 model Company {
-  id                    Int      @id @default(autoincrement())
+  id                    Int       @id @default(autoincrement())
   name                  String
-  industry              Industry @relation(fields: [industry_id], references: [id])
-  industry_id           Int
-  securities_code       String   @unique
+  industry              Industry? @relation(fields: [industry_id], references: [id])
+  industry_id           Int?
+  securities_code       String    @unique
   net_sales             BigInt
   operating_income      BigInt
-  average_annual_salary Int
+  average_annual_salary BigInt
   average_age           Float
   number_of_employees   Int
   source_title          String
