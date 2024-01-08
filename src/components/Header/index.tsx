@@ -10,6 +10,7 @@ import { Kaisei_HarunoUmi } from "next/font/google";
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
 import { Industry } from "@/scripts/types/industry";
+import { SearchBar } from "@/components/Header/components/SearchBar";
 
 const kaiseiHarunoUmi = Kaisei_HarunoUmi({ subsets: [], weight: "700" });
 
@@ -39,6 +40,9 @@ export const Header = () => {
             ドコカネ
           </NextLink>
         </NavbarBrand>
+        <NavbarContent>
+          <SearchBar />
+        </NavbarContent>
       </Navbar>
       <Navbar
         className={styles["industry-container"]}
@@ -58,7 +62,7 @@ export const Header = () => {
               </NavbarItem>
             ))
           ) : (
-            <Skeleton className={"h-[1rem]"} />
+            <Skeleton className={"h-6 w-full rounded"} />
           )}
         </NavbarContent>
       </Navbar>

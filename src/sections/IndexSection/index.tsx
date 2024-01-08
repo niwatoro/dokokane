@@ -1,5 +1,3 @@
-"use client";
-
 import { Description } from "@/sections/IndexSection/components/Description";
 import { Layout } from "@/sections/components/Layout";
 import { PreviewCard } from "@/sections/IndexSection/components/PreviewCard";

@@ -1,5 +1,3 @@
-"use client";
-
 import { Company } from "@/scripts/types/company";
 import { FC, useState } from "react";
 import HighchartsReact from "highcharts-react-official";

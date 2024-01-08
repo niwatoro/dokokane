@@ -1,5 +1,3 @@
-"use client";
-
 import Head from "next/head";
 import { CompanySection } from "@/sections/CompanySection";
 import { Company } from "@/scripts/types/company";
