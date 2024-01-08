@@ -6,7 +6,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { data } = await supabase.from("Company").select("*").limit(12);
+  const { order } = req.query;
+  const { data } = await supabase
+    .from("Company")
+    .select("*")
+    .order((order as string | undefined) ?? "average_annual_salary", {
+      ascending: false,
+    })
+    .limit(12);
   res.status(200).json({
     data:
       data?.map(

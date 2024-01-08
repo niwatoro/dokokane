@@ -9,3 +9,14 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.sorter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.sorter > span {
+  font-size: small;
+}

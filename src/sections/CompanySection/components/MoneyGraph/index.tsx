@@ -43,7 +43,15 @@ const barOptions = {
     },
     labels: {
       formatter: function () {
-        return (this as any).value / 10000 + "万";
+        const value = (this as any).value;
+
+        if (value > 100000000) {
+          const 億 = Math.floor(value / 100000000);
+          const 万 = (value % 100000000) / 10000;
+          return 億 + "億" + (万 > 0 ? 万 + "万" : "");
+        }
+
+        return value / 10000 + "万";
       },
     },
   },
