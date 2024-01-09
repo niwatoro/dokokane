@@ -10,6 +10,7 @@ export const formatWithKanji = (number: number) => {
     largestGroup = "億";
   }
 
-  const formattedNumber = number / Math.pow(10, 4);
+  const formattedNumber =
+    number / Math.pow(10, 4 * Math.floor((digitCount - 1) / 4));
   return `${formattedNumber.toFixed(0)}${largestGroup}`;
 };

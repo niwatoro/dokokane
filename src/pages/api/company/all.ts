@@ -6,14 +6,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { order } = req.query;
-  const { data } = await supabase
+  const { order, page } = req.query;
+  const { data, count } = await supabase
     .from("Company")
-    .select("*")
+    .select("*", { count: "exact" })
     .order((order as string | undefined) ?? "average_annual_salary", {
       ascending: false,
     })
-    .limit(12);
+    .range(12 * (Number(page) - 1), 12 * Number(page) - 1);
   res.status(200).json({
     data:
       data?.map(
@@ -30,5 +30,6 @@ export default async function handler(
             sourceTitle: d.source_title,
           }) as Company,
       ) ?? [],
+    total_pages: count ? Math.ceil(count / 12) : 1,
   });
 }

@@ -5,27 +5,31 @@ import { Heading } from "@/sections/components/Heading";
 import styles from "@/styles/sections/IndexSection/index.module.css";
 import { useEffect, useState } from "react";
 import { Company } from "@/scripts/types/company";
-import { Select, SelectItem, Spinner } from "@nextui-org/react";
+import { Pagination, Select, SelectItem, Spinner } from "@nextui-org/react";
 import { Center } from "@/sections/components/Center";
 import { companySortableColumns } from "@/data/company";
 
 export const IndexSection = () => {
   const [loading, setLoading] = useState(true);
+
   const [companies, setCompanies] = useState<Company[]>([]);
   const [order, setOrder] = useState("average_annual_salary");
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchCompanies = async () => {
-      const res = await fetch(`/api/company/all?order=${order}`);
+      const res = await fetch(`/api/company/all?order=${order}&page=${page}`);
       if (res.ok) {
         const json = await res.json();
         setCompanies(json.data);
+        setTotalPages(json.total_pages);
       }
       setLoading(false);
     };
 
     fetchCompanies().catch(console.error);
-  }, [order]);
+  }, [order, page]);
 
   return (
     <Layout>
@@ -39,7 +43,12 @@ export const IndexSection = () => {
             className={"max-w-xs"}
             labelPlacement={"outside-left"}
             defaultSelectedKeys={[order]}
-            onChange={(event) => setOrder(event.target.value)}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (value) {
+                setOrder(value);
+              }
+            }}
           >
             {companySortableColumns.map((column) => (
               <SelectItem key={column.value} value={column.value}>
@@ -53,10 +62,18 @@ export const IndexSection = () => {
             <Spinner />
           </Center>
         ) : (
-          <div className={styles["preview-card-container"]}>
-            {companies.map((company, i) => (
-              <PreviewCard key={i} company={company} />
-            ))}
+          <div className={styles["preview-card-container-wrapper"]}>
+            <div className={styles["preview-card-container"]}>
+              {companies.map((company, i) => (
+                <PreviewCard key={i} company={company} />
+              ))}
+            </div>
+            <Pagination
+              variant={"bordered"}
+              total={totalPages}
+              page={page}
+              onChange={setPage}
+            />
           </div>
         )}
       </div>
