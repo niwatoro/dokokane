@@ -8,6 +8,8 @@ export const formatWithKanji = (number: number) => {
     largestGroup = "万";
   } else if (digitCount <= 12) {
     largestGroup = "億";
+  } else if (digitCount <= 16) {
+    largestGroup = "兆";
   }
 
   const formattedNumber =

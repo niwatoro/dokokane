@@ -6,12 +6,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { order, page } = req.query;
+  const { order, ascending, page } = req.query;
   const { data, count } = await supabase
     .from("Company")
     .select("*", { count: "exact" })
     .order((order as string | undefined) ?? "average_annual_salary", {
-      ascending: false,
+      ascending: ascending === "true",
     })
     .range(12 * (Number(page) - 1), 12 * Number(page) - 1);
   res.status(200).json({

@@ -8,6 +8,7 @@
   display: grid;
   gap: 2rem;
   margin: 1.5rem 0;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -21,8 +22,4 @@
   justify-content: flex-end;
   align-items: center;
   column-gap: 0.5rem;
-}
-
-.sorter > span {
-  font-size: small;
 }
