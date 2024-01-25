@@ -19,7 +19,7 @@ export const Header = () => {
 
   useEffect(() => {
     const fetchIndustries = async () => {
-      const res = await fetch("/api/industry/all");
+      const res = await fetch("/api/industry/header");
       if (res.ok) {
         const json = await res.json();
         setIndustries(json.data);

@@ -12,22 +12,30 @@ datasource db {
 }
 
 model Industry {
-  id      Int       @id @default(autoincrement())
-  name    String
-  Company Company[]
+  id              Int               @id @default(autoincrement())
+  name            String
+  CompanyIndustry CompanyIndustry[]
 }
 
 model Company {
-  id                    Int       @id @default(autoincrement())
+  id                    Int               @id @default(autoincrement())
   name                  String
-  industry              Industry? @relation(fields: [industry_id], references: [id])
-  industry_id           Int?
-  securities_code       String    @unique
+  securities_code       String            @unique
   net_sales             BigInt
   operating_income      BigInt
   average_annual_salary BigInt
   average_age           Float
   number_of_employees   Int
+  description           String
   source_title          String
   source_url            String
+  CompanyIndustry       CompanyIndustry[]
+}
+
+model CompanyIndustry {
+  id          Int      @id @default(autoincrement())
+  company_id  Int
+  industry_id Int
+  company     Company  @relation(fields: [company_id], references: [id])
+  industry    Industry @relation(fields: [industry_id], references: [id])
 }
