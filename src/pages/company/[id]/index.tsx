@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { Center } from "@/sections/components/Center";
+import { Industry } from "@/scripts/types/industry";
 
 export default function Home() {
   const { id } = useRouter().query;
 
   const [loading, setLoading] = useState(true);
   const [company, setCompany] = useState<Company | null>(null);
+  const [segments, setSegments] = useState<Industry[] | null>(null);
 
   useEffect(() => {
     const fetchCompany = async () => {
@@ -24,6 +26,12 @@ export default function Home() {
         setCompany(json.data);
       }
       setLoading(false);
+
+      const segmentsRes = await fetch(`/api/industry/company?companyId=${id}`);
+      if (segmentsRes.ok) {
+        const json = await segmentsRes.json();
+        setSegments(json.data);
+      }
     };
 
     fetchCompany().catch(console.error);
@@ -50,7 +58,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <CompanySection company={company} />
+        <CompanySection company={company} segments={segments} />
       </main>
     </>
   );

@@ -6,3 +6,8 @@
   font-weight: bold;
   font-size: x-large;
 }
+
+.description-container {
+  padding-top: 2rem;
+  white-space: pre-wrap;
+}
