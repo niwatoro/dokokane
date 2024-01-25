@@ -15,7 +15,7 @@ export const PreviewCard: FC<Props> = ({ company, selectedColumn }) => {
   )!;
 
   return (
-    <NextLink href={`/company/${company.securitiesCode}`}>
+    <NextLink href={`/company/${company.id}`}>
       <div className={styles.container}>
         <div className={styles.name}>{company.name}</div>
         <div>

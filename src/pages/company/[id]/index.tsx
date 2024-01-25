@@ -7,20 +7,18 @@ import { useRouter } from "next/router";
 import { Center } from "@/sections/components/Center";
 
 export default function Home() {
-  const { securitiesCode } = useRouter().query;
+  const { id } = useRouter().query;
 
   const [loading, setLoading] = useState(true);
   const [company, setCompany] = useState<Company | null>(null);
 
   useEffect(() => {
     const fetchCompany = async () => {
-      if (!securitiesCode) {
+      if (!id) {
         return;
       }
 
-      const res = await fetch(
-        `/api/company/detail?securities_code=${securitiesCode}`,
-      );
+      const res = await fetch(`/api/company/detail?id=${id}`);
       if (res.ok) {
         const json = await res.json();
         setCompany(json.data);
@@ -29,7 +27,7 @@ export default function Home() {
     };
 
     fetchCompany().catch(console.error);
-  }, [securitiesCode]);
+  }, [id]);
 
   if (loading) {
     return (

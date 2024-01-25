@@ -6,15 +6,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { securities_code } = req.query;
-  const { data } = await supabase
-    .from("Company")
-    .select("*")
-    .eq("securities_code", securities_code);
+  const { id } = req.query;
+  const { data } = await supabase.from("Company").select("*").eq("id", id);
   res.status(200).json({
     data:
       data && data.length > 0
         ? ({
+            id: data[0].id,
             securitiesCode: data[0].securities_code,
             name: data[0].name,
             netSales: data[0].net_sales,

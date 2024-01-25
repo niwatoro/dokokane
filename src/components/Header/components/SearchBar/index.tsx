@@ -5,7 +5,7 @@ import { Company } from "@/scripts/types/company";
 
 export const SearchBar = () => {
   const [value, setValue] = useState("");
-  const [items, setItems] = useState<{ label: string; value: string }[]>([]);
+  const [items, setItems] = useState<{ label: string; value: number }[]>([]);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -13,12 +13,10 @@ export const SearchBar = () => {
       if (res.ok) {
         const json = await res.json();
         setItems(
-          (json.data as Pick<Company, "name" | "securitiesCode">[]).map(
-            (d) => ({
-              label: d.name,
-              value: d.securitiesCode,
-            }),
-          ),
+          (json.data as Pick<Company, "name" | "id">[]).map((d) => ({
+            label: d.name,
+            value: d.id,
+          })),
         );
       }
     };

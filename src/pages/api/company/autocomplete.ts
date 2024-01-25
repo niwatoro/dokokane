@@ -20,7 +20,7 @@ export default async function handler(
 
   const { data } = await supabase
     .from("Company")
-    .select("name,securities_code")
+    .select("name,id")
     .or(
       `name.like.*${convertHalfToFull(keyword)}*,name.like.*${convertFullToHalf(
         keyword,
@@ -32,9 +32,9 @@ export default async function handler(
       data?.map(
         (d) =>
           ({
-            securitiesCode: d.securities_code,
+            id: d.id,
             name: d.name,
-          }) as Pick<Company, "name" | "securitiesCode">,
+          }) as Pick<Company, "name" | "id">,
       ) ?? [],
   });
 }

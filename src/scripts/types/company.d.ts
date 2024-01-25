@@ -1,4 +1,5 @@
 export type Company = {
+  id: number;
   securitiesCode: string;
   name: string;
   netSales: number;

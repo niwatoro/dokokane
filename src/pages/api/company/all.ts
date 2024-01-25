@@ -19,6 +19,7 @@ export default async function handler(
       data?.map(
         (d) =>
           ({
+            id: d.id,
             securitiesCode: d.securities_code,
             name: d.name,
             netSales: d.net_sales,
