@@ -7,6 +7,7 @@ export type Company = {
   averageAnnualSalary: number;
   averageAge: number;
   numberOfEmployees: number;
+  description: string;
   sourceTitle: string;
   sourceUrl: string;
 };

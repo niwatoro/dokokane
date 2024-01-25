@@ -20,6 +20,7 @@ export default async function handler(
             averageAnnualSalary: data[0].average_annual_salary,
             averageAge: data[0].average_age,
             numberOfEmployees: data[0].number_of_employees,
+            description: data[0].description,
             sourceUrl: data[0].source_url,
             sourceTitle: data[0].source_title,
           } as Company)

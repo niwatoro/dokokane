@@ -5,6 +5,8 @@ import styles from "@/styles/sections/CompanySection/index.module.css";
 import { MoneyGraph } from "@/sections/CompanySection/components/MoneyGraph";
 import { Link } from "@nextui-org/link";
 import { BreadcrumbItem, Breadcrumbs, Spacer } from "@nextui-org/react";
+import { Heading } from "@/sections/components/Heading";
+import { InfoTable } from "@/sections/CompanySection/components/InfoTable";
 
 type Props = {
   company: Company;
@@ -27,6 +29,10 @@ export const CompanySection: FC<Props> = ({ company }) => {
             </Link>
           </div>
         </div>
+        <Spacer y={8} />
+        <Heading>基本情報</Heading>
+        <InfoTable company={company} />
+        <Spacer y={8} />
         <MoneyGraph company={company} />
       </div>
     </Layout>
