@@ -39,7 +39,15 @@ export const CompanySection: FC<Props> = ({ company, segments }) => {
         <Spacer y={8} />
         <Heading>事業の内容</Heading>
         <div className={styles["description-container"]}>
-          {company.description}
+          {company.description
+            .split("。 ")
+            .filter((s) => s.length > 0)
+            .map((sentence, i) => (
+              <div key={i} className={styles.sentence}>
+                {sentence}
+                {sentence[sentence.length - 1] !== "。" && "。"}
+              </div>
+            ))}
         </div>
       </div>
     </Layout>

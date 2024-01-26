@@ -31,7 +31,7 @@ export const InfoTable: FC<Props> = ({ company, segments }) => {
               {segments === null ? (
                 <Skeleton />
               ) : segments.length === 0 ? (
-                "なし"
+                "単一"
               ) : (
                 segments.map((segment, i) => (
                   <span key={i}>

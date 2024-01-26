@@ -65,6 +65,11 @@ export const Header = () => {
             <Skeleton className={"h-6 w-full rounded"} />
           )}
         </NavbarContent>
+        <NavbarItem>
+          <NextLink className={styles["industry-link"]} href={"/industry"}>
+            もっと見る
+          </NextLink>
+        </NavbarItem>
       </Navbar>
     </>
   );

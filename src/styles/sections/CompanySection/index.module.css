@@ -10,4 +10,7 @@
 .description-container {
   padding-top: 2rem;
   white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
