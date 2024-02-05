@@ -14,9 +14,9 @@
 }
 
 .container td:nth-child(1) {
-  background-color: goldenrod;
+  background-color: darkgoldenrod;
   color: white;
-  border: solid 1px darkgoldenrod;
+  border: solid 1px goldenrod;
 }
 
 .container td:nth-child(2) {
