@@ -55,6 +55,23 @@ const barOptions = {
       },
     },
   },
+  responsive: {
+    rules: [
+      {
+        condition: {
+          maxWidth: 768,
+        },
+        chartOptions: {
+          xAxis: {
+            categories: ["売上高", "利益と費用"],
+            labels: {
+              rotation: -90,
+            },
+          },
+        },
+      },
+    ],
+  },
 } as const;
 
 const pieOptions = {
