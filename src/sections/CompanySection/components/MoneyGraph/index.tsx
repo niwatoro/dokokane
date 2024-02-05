@@ -61,22 +61,27 @@ const pieOptions = {
   chart: {
     type: "pie",
   },
+  credits: {
+    enabled: false,
+  },
   plotOptions: {
     series: {
       dataLabels: [
         {
           enabled: true,
           distance: 20,
-          format: "{point.name}: {point.percentage:.0f}%",
+          style: {
+            fontSize: "1em",
+          },
         },
         {
           enabled: true,
-          distance: -40,
+          distance: -50,
           formatter: function () {
-            return Math.round((this as any).y / 10000) + "万";
+            return `${Math.round((this as any).y / 10000)}万`;
           },
           style: {
-            fontSize: "1.2em",
+            fontSize: "1.5em",
             textOutline: "none",
             opacity: 0.7,
           },
@@ -88,6 +93,36 @@ const pieOptions = {
         },
       ],
     },
+  },
+  responsive: {
+    rules: [
+      {
+        condition: {
+          maxWidth: 768,
+        },
+        chartOptions: {
+          series: {
+            dataLabels: [
+              {
+                enabled: false,
+              },
+              {
+                enabled: true,
+                distance: -60,
+                formatter: function () {
+                  return `${(this as any).point.name}: ${Math.round(
+                    (this as any).y / 10000,
+                  )}万`;
+                },
+                style: {
+                  fontSize: "1em",
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
   },
 } as const;
 

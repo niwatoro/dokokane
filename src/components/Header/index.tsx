@@ -51,25 +51,25 @@ export const Header = () => {
       >
         <NavbarContent className={styles["industry-content"]}>
           {industries ? (
-            industries.map((industry, i) => (
-              <NavbarItem key={i}>
-                <NextLink
-                  className={styles["industry-link"]}
-                  href={`/industry/${industry.id}`}
-                >
-                  {industry.name}
-                </NextLink>
-              </NavbarItem>
-            ))
+            <>
+              {industries.map((industry, i) => (
+                <NavbarItem key={i}>
+                  <NextLink
+                    className={styles["industry-link"]}
+                    href={`/industry/${industry.id}`}
+                  >
+                    {industry.name}
+                  </NextLink>
+                </NavbarItem>
+              ))}
+              <NextLink className={styles["industry-link"]} href={"/industry"}>
+                もっと見る……
+              </NextLink>
+            </>
           ) : (
             <Skeleton className={"h-6 w-full rounded"} />
           )}
         </NavbarContent>
-        <NavbarItem>
-          <NextLink className={styles["industry-link"]} href={"/industry"}>
-            もっと見る
-          </NextLink>
-        </NavbarItem>
       </Navbar>
     </>
   );
